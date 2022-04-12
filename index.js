@@ -1,11 +1,19 @@
-const express = require("express");
+const express = require("express"); 
+const indexRouter = require("./routes/router");
+const authRouter = require("./routes/auth.router")
+// const {login, register} = require("./controllers/auth.controller")
 
 const app = express();
+app.use(express.json());
 
-app.get("/", (req,res) => {
-    res.send("<h1>Hello Beautiful World 💕</h1>")
-});
+// app.use((req, res, next) => {
+//     console.log("Global Middleware");
+//     next();
+// })
+app.use("/auth", authRouter);
+app.use("/", indexRouter);
 
-app.listen(4000, () => {
-    console.log("Server running on PORT 4000")
+
+app.listen(8080, () => {
+    console.log("Server running successfully")
 });
